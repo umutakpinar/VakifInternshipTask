@@ -133,6 +133,7 @@
             this.dataGridView.RowTemplate.Height = 33;
             this.dataGridView.Size = new System.Drawing.Size(1132, 512);
             this.dataGridView.TabIndex = 7;
+            this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellClick);
             // 
             // DirectoryDetails
             // 

@@ -94,5 +94,15 @@ namespace VakifIntershipTask
             }
         }
 
+        private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // Geçerli bir hücreye tıklandığını kontrol edin
+            {
+                DataGridViewCell selectedCell = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                string cellValue = selectedCell.Value?.ToString();
+
+                MessageBox.Show(cellValue);
+            }
+        }
     }
 }
