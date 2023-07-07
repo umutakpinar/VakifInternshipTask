@@ -53,7 +53,8 @@ namespace VakifIntershipTask
                 Console.WriteLine("-------------------------");
                 // FOR TEST -----------------------------------------------------------------------
                 lblNumberOfMissingContentFiles.Text = _fileInfosHasTheMissingContent.Count.ToString();
-                dataGridView.DataSource = _fileInfosHasTheMissingContent;
+                DataGridViewAdapter adapter = new DataGridViewAdapter(_fileInfosHasTheMissingContent);
+                dataGridView.DataSource = adapter.Adapt();
                 dataGridView.AutoGenerateColumns = true;
                 
             }

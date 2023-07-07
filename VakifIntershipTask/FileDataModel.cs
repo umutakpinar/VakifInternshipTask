@@ -16,10 +16,10 @@ namespace VakifIntershipTask
         {
             FilePath = filePath;
         }
-
         public string FilePath { get => _filePath; set => _filePath = value; }
         public List<string> FieldNamesInsidePath { get => _fieldNamesInsidePath; set => _fieldNamesInsidePath = value; }
         public List<string> PropertiesUsedInsideCopy { get => _propertiesUsedInsideCopy; set => _propertiesUsedInsideCopy = value; }
         public List<string> Differencies { get => _differencies; set => _differencies = value; }
+        
     }
 }
