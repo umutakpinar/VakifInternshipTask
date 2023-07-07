@@ -25,31 +25,7 @@ namespace VakifIntershipTask
 
         private void DirectoryDetails_Load(object sender, EventArgs e)
         {
-            try
-            {
-                //load olayında ekrandaki compoenntların değerleri atanmalı
-                lblPathDirectory.Text = _selectedPath;
-                _files = Directory.GetFiles(_selectedPath, "DTO*.cs", searchOption: SearchOption.AllDirectories);
-                TaskManager manager = new TaskManager(_files);
-                _fileInfos = manager.CheckAllFiles();
-                _fileInfosHasTheMissingContent = new List<FileDataModel>();
-                lblNumberOfDTOFiles.Text = _files.Length.ToString();
-                foreach(FileDataModel fileInfo in _fileInfos)
-                {
-                    if(fileInfo.Differencies.Count > 0)
-                    {
-                        _fileInfosHasTheMissingContent.Add(fileInfo);
-                    }
-                }
-                lblNumberOfMissingContentFiles.Text = _fileInfosHasTheMissingContent.Count.ToString();
-                DataGridViewAdapter adapter = new DataGridViewAdapter(_fileInfosHasTheMissingContent);
-                dataGridView.DataSource = adapter.Adapt();
-                dataGridView.AutoGenerateColumns = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            TaskManager.LoadData(lblPathDirectory, _selectedPath, _files, _fileInfos, _fileInfosHasTheMissingContent, lblNumberOfDTOFiles, lblNumberOfMissingContentFiles, dataGridView);
         }
 
         private void lblPathDirectory_Click(object sender, EventArgs e)
@@ -67,7 +43,7 @@ namespace VakifIntershipTask
 
         private void DirectoryDetails_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _form1Instance.Show(); //Bu form kapatıldığında yeniden diğer formu aç
+            _form1Instance.Show(); //Bu form kapatıldığında seçim formunu aç
         }
 
         
@@ -83,6 +59,12 @@ namespace VakifIntershipTask
             }
         
         }
-
+        //eğer path o an bir başkası tarafından değiştirillirse dataGridView'i yenilesin
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            TaskManager.LoadData(lblPathDirectory, _selectedPath, _files, _fileInfos, _fileInfosHasTheMissingContent, lblNumberOfDTOFiles, lblNumberOfMissingContentFiles, dataGridView);
+            dataGridView.Update();
+            dataGridView.Refresh();
+        }
     }
 }

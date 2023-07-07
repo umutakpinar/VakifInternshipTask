@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Deployment.Application;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml;
-using static System.Windows.Forms.LinkLabel;
+using System.Windows.Forms;
 
 namespace VakifIntershipTask
 {
@@ -107,6 +105,35 @@ namespace VakifIntershipTask
         {
            List<string> missingFields = privateFields.Except(usedInsideCopy).ToList();
             return missingFields;
+        }
+
+        public static void LoadData(Label lblPathDirectory, string _selectedPath, string[] _files, List<FileDataModel> _fileInfos, List<FileDataModel> _fileInfosHasTheMissingContent, Label lblNumberOfDTOFiles, Label lblNumberOfMissingContentFiles,DataGridView dataGridView)
+        {
+            try
+            {
+                //load olayında ekrandaki compoenntların değerleri atanmalı
+                lblPathDirectory.Text = _selectedPath;
+                _files = Directory.GetFiles(_selectedPath, "DTO*.cs", searchOption: SearchOption.AllDirectories);
+                TaskManager manager = new TaskManager(_files);
+                _fileInfos = manager.CheckAllFiles();
+                _fileInfosHasTheMissingContent = new List<FileDataModel>();
+                lblNumberOfDTOFiles.Text = _files.Length.ToString();
+                foreach (FileDataModel fileInfo in _fileInfos)
+                {
+                    if (fileInfo.Differencies.Count > 0)
+                    {
+                        _fileInfosHasTheMissingContent.Add(fileInfo);
+                    }
+                }
+                lblNumberOfMissingContentFiles.Text = _fileInfosHasTheMissingContent.Count.ToString();
+                DataGridViewAdapter adapter = new DataGridViewAdapter(_fileInfosHasTheMissingContent);
+                dataGridView.DataSource = adapter.Adapt();
+                dataGridView.AutoGenerateColumns = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

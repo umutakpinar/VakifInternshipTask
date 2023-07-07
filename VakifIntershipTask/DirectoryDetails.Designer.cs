@@ -36,6 +36,7 @@
             this.lblNumberOfDTOFiles = new System.Windows.Forms.Label();
             this.lblNumberOfMissingContentFiles = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -134,11 +135,23 @@
             this.dataGridView.TabIndex = 7;
             this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellClick);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Location = new System.Drawing.Point(1000, 43);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(156, 137);
+            this.btnRefresh.TabIndex = 8;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // DirectoryDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 772);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.lblNumberOfMissingContentFiles);
             this.Controls.Add(this.lblNumberOfDTOFiles);
@@ -169,5 +182,6 @@
         private System.Windows.Forms.Label lblNumberOfDTOFiles;
         private System.Windows.Forms.Label lblNumberOfMissingContentFiles;
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
