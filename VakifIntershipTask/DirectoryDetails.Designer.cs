@@ -106,7 +106,6 @@
             this.lblNumberOfDTOFiles.Size = new System.Drawing.Size(48, 59);
             this.lblNumberOfDTOFiles.TabIndex = 5;
             this.lblNumberOfDTOFiles.Text = "0";
-            this.lblNumberOfDTOFiles.Click += new System.EventHandler(this.lblNumberOfDTOFiles_Click);
             // 
             // lblNumberOfMissingContentFiles
             // 

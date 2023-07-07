@@ -41,22 +41,10 @@ namespace VakifIntershipTask
                         _fileInfosHasTheMissingContent.Add(fileInfo);
                     }
                 }
-                // FOR TEST -------------------------------------------------------------------
-                foreach(FileDataModel file in _fileInfos)
-                {
-                    Console.WriteLine(file.FilePath);
-                    foreach(string a in file.Differencies)
-                    {
-                        Console.WriteLine(a);
-                    }
-                }
-                Console.WriteLine("-------------------------");
-                // FOR TEST -----------------------------------------------------------------------
                 lblNumberOfMissingContentFiles.Text = _fileInfosHasTheMissingContent.Count.ToString();
                 DataGridViewAdapter adapter = new DataGridViewAdapter(_fileInfosHasTheMissingContent);
                 dataGridView.DataSource = adapter.Adapt();
                 dataGridView.AutoGenerateColumns = true;
-                
             }
             catch (Exception ex)
             {
@@ -82,27 +70,19 @@ namespace VakifIntershipTask
             _form1Instance.Show(); //Bu form kapatıldığında yeniden diğer formu aç
         }
 
-        private void lblNumberOfDTOFiles_Click(object sender, EventArgs e)
-        {
-            try
-            {
-               //BU ALANA TIKLANDIĞINDA İLGİLİ KLASÖRÜ AÇIP BELİRLİ DOSYALARI SEÇMELİ
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
+        
+        //hücreye tıklanınca hücre verisini göster
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // Geçerli bir hücreye tıklandığını kontrol edin
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 DataGridViewCell selectedCell = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 string cellValue = selectedCell.Value?.ToString();
 
                 MessageBox.Show(cellValue);
             }
+        
         }
+
     }
 }
