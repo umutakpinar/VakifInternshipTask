@@ -105,7 +105,7 @@ namespace VakifIntershipTask
                             writer.Write("*****************************************");
                         }
                     }
-                    MessageBox.Show("Output file {0} created.", fileName);
+                    MessageBox.Show("Output file created!");
                 }
             }
             else
