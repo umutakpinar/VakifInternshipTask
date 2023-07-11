@@ -72,41 +72,7 @@ namespace VakifIntershipTask
         {
             if (Convert.ToInt32(lblNumberOfMissingContentFiles.Text) != 0)
             {
-                List<string> headers = new List<string>();
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                int indexOfLastSlash = _selectedPath.LastIndexOf("/");
-                //string saveFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); ; //Belki burada varsayılan olarak desktop seçili hale getirilebilir.
-                saveFileDialog.FileName = _selectedPath.Substring(indexOfLastSlash+1) + "_analysis";
-                saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
-                if(saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string fileName = saveFileDialog.FileName;
-                    //string filePath = Path.GetDirectoryName(fileName);
-                    using (StreamWriter writer = new StreamWriter(fileName))
-                    {
-                        foreach (DataGridViewColumn column in dataGridView.Columns)
-                        {
-                            headers.Add(column.HeaderText);
-                        }
-                        writer.WriteLine(DateTime.Now);
-                        writer.WriteLine("Directory Path : {0}", _selectedPath);
-                        writer.WriteLine("Number of DTO Files With Missing Content : {0}",lblNumberOfMissingContentFiles.Text);
-                        writer.Write("\n*****************************************");
-                        foreach (DataGridViewRow row in dataGridView.Rows)
-                        {
-                            writer.Write("\n");
-                            foreach (DataGridViewCell cell in row.Cells)
-                            {
-                                writer.Write("{0} : ", headers[cell.ColumnIndex]);
-                                writer.Write(cell.Value.ToString());
-                                writer.Write("\n");
-                            }
-                            writer.Write("\n");
-                            writer.Write("*****************************************");
-                        }
-                    }
-                    MessageBox.Show("Output file created!");
-                }
+                TaskManager.OutputWriter(_selectedPath, dataGridView, lblNumberOfMissingContentFiles);
             }
             else
             {
