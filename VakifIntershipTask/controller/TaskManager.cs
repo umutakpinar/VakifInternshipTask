@@ -29,51 +29,44 @@ namespace VakifIntershipTask
         {
             FileDataModel currentFile = new FileDataModel(filePath);
             
-            List<string> usedProperties = GetUsedProperties(fileContent);
-            List<string> usedFieldsInsideCopy = FindUsedFieldsInsideCopy(fileContent);
-            List<string> missedFieldsInsideCopy = CompareListsAndReturnDifferences(usedProperties, usedFieldsInsideCopy);
+            List<string> propertiesInsideFile = FindPropertiesInsideFile(fileContent);
+            List<string> usedPropertiesInsideCopy = FindUsedPropertiesInsideCopy(fileContent);
+            List<string> missedProperiesInsideCopy = CompareListsAndReturnDifferences(propertiesInsideFile, usedPropertiesInsideCopy);
             
-            currentFile.FieldNamesInsidePath = usedProperties;
-            currentFile.PropertiesUsedInsideCopy = usedFieldsInsideCopy;
-            currentFile.Differencies = missedFieldsInsideCopy;
+            currentFile.PropertiesInsideFile = propertiesInsideFile; //Bu kısımda FieldNamesInsidePath kısmı değiştirilecek
+            currentFile.PropertiesUsedInsideCopy = usedPropertiesInsideCopy;
+            currentFile.Differencies = missedProperiesInsideCopy;
            
             return currentFile;
         }
 
-        //Bir DTO.cs içerisindeki private field'ları alır, ilk harflerini büyütür ve bir List<string olarak geri döndürür.>
-        private List<string> GetUsedProperties(string fileContent)
+        //Bir DTO.cs içerisindeki private field'ları alır, bir List<string olarak geri döndürür.> 
+        private List<string> FindPropertiesInsideFile(string fileContent)
         {
-            List<string> usedProperties = new List<string>();
+            List<string> usedPropertiesInsideFile = new List<string>();
 
-            string pattern = @"DataMember.*.*public .* (?<alanlar>\S+)";
+            string pattern = @"(?<=DataMember.*\n.*public .* )(?<alanlar>\S+)";
             MatchCollection matches = Regex.Matches(fileContent, pattern);
             foreach (Match g in matches)
             {
-                usedProperties.Add(g.Groups["alanlar"].Value.Trim());
+                usedPropertiesInsideFile.Add(g.Groups["alanlar"].Value.Trim());
             }
 
-            return usedProperties;
+            return usedPropertiesInsideFile;
         }
 
-        //Bir DTO.cs içerisindeki Copy metodunda kullanılan fieldları alır bir List<string olarak geri döndürür.>
-        private List<string> FindUsedFieldsInsideCopy(string fileContent)
+        //Bir DTO.cs içerisindeki Copy metodunda kullanılan propertyleri alır bir List<string olarak geri döndürür.>
+        private List<string> FindUsedPropertiesInsideCopy(string fileContent)
         {
-            string pattern = @"(?<=this\.)(?<propertyUsedInsideCopy>.*)(?=;)";
-            List<string> usedFieldsInsideCopy = new List<string>();
-            using (StringReader reader = new StringReader(fileContent))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    Match match = Regex.Match(line, pattern);
-                    if (match.Success)
-                    {
-                        usedFieldsInsideCopy.Add(match.Value);
-                    }
-                }
-            }
+            List<string> usedPropertiesInsideCopy = new List<string>();
 
-            return usedFieldsInsideCopy;
+            string pattern = @"(?<=this\.)(?<propertyUsedInsideCopy>.*)(?=;)";
+            MatchCollection matches = Regex.Matches(fileContent, pattern);
+            foreach(Match g in matches)
+            {
+                usedPropertiesInsideCopy.Add(g.Groups["propertyUsedInsideCopy"].Value.Trim());
+            }
+            return usedPropertiesInsideCopy;
         }
 
         //İki listedeki farkları karşılaştırır. Farklı olan elemanları bir liste halinde geri döndürür, eğer ikisi de eşitse boş bir liste döndürür
