@@ -9,7 +9,7 @@ namespace VakifIntershipTask
     internal class FileDataModel
     {
         private string _filePath;
-        private List<string> _fieldNamesInsidePath;
+        private List<string> _propertiesInsideFile;
         private List<string> _propertiesUsedInsideCopy;
         private List<string> _differencies;
         public FileDataModel(string filePath)
@@ -26,14 +26,14 @@ namespace VakifIntershipTask
                 _filePath = value;
             }
         }
-        public List<string> FieldNamesInsidePath {
+        public List<string> PropertiesInsideFile {
             get
             {
-                return _fieldNamesInsidePath;
+                return _propertiesInsideFile;
             }
             set
             {
-                _fieldNamesInsidePath = value;
+                _propertiesInsideFile = value;
             }
         }
         public List<string> PropertiesUsedInsideCopy {
