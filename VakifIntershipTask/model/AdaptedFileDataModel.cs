@@ -13,19 +13,65 @@ namespace VakifIntershipTask
         private string _existingFields;
         private string _usedProperties;
         private string _missingProperties;
-        public AdaptedFileDataModel(string fileName,string filePath, string existingFields, string usedProperties, string missingProperties)
+        public AdaptedFileDataModel(string fileName, string filePath, string existingFields, string usedProperties, string missingProperties)
         {
-           FileName = fileName;
-           FilePath = filePath;
-           ExistingFields = existingFields;
-           UsedProperties = usedProperties;
-           MissingProperties = missingProperties;
+            FileName = fileName;
+            FilePath = filePath;
+            ExistingFields = existingFields;
+            UsedProperties = usedProperties;
+            MissingProperties = missingProperties;
         }
 
-        public string FileName { get => _fileName; set => _fileName = value; }
-        public string FilePath { get => _filePath; set => _filePath = value; }
-        public string ExistingFields { get => _existingFields; set => _existingFields = value; }
-        public string UsedProperties { get => _usedProperties; set => _usedProperties = value; }
-        public string MissingProperties { get => _missingProperties; set => _missingProperties = value; }
+        
+        public string FileName {
+            get
+            {
+                return _fileName;
+            }
+            set
+            {
+                _fileName = value;
+            }
+        }
+        public string FilePath {
+            get
+            {
+                return _filePath;
+            }
+            set
+            {
+                _filePath = value;
+            }
+        }
+        public string ExistingFields {
+            get
+            {
+                return _existingFields;
+            }
+            set
+            {
+                _existingFields = value;
+            }
+        }
+        public string UsedProperties {
+            get
+            {
+                return _usedProperties;
+            }
+            set
+            {
+                _usedProperties = value;
+            }
+        }
+        public string MissingProperties {
+            get
+            {
+                return _missingProperties;
+            }
+            set
+            {
+                _missingProperties = value;
+            }
+        }
     }
 }
