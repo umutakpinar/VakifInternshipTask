@@ -24,14 +24,13 @@ namespace VakifIntershipTask
                     new AdaptedFileDataModel(
                         substractNameFromPath(_fileDataListToAdapt[i].FilePath),
                         _fileDataListToAdapt[i].FilePath,
-                        convertListToString(_fileDataListToAdapt[i].FieldNamesInsidePath),
+                        convertListToString(_fileDataListToAdapt[i].PropertiesInsideFile),
                         convertListToString(_fileDataListToAdapt[i].PropertiesUsedInsideCopy),
                         convertListToString(_fileDataListToAdapt[i].Differencies)
                     )
                 );
             }
             return _adaptedFileData;
-            //_dataGrid.DataSource dataSource2u burada eşitlemek yerine burada bir List<AdaptedFildeDataModel> dönmesi daha iyi olaiblir
         }
 
         private string convertListToString(List<String> fileDataList)
