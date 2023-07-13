@@ -11,33 +11,108 @@ namespace VakifIntershipTask
     internal class TaskManager
     {
         private string[] _dtoFilePaths;
-        public TaskManager(string[] dtoFilePaths) {
-            _dtoFilePaths = dtoFilePaths;
+        private List<String> _fileErrorList; //Olmaz ama olur da eğer seçilen dosyada Copy methodu yoksa ve .g.cs dosyası yoksa
+        public List<string> FileErrorList
+        {
+            get
+            {
+                return _fileErrorList;
+            }
+            set
+            {
+                _fileErrorList = value;
+            }
         }
 
-        public List<FileDataModel> CheckAllFiles()
+        public TaskManager(string[] dtoFilePaths) {
+            _dtoFilePaths = dtoFilePaths;
+            FileErrorList = new List<String>();
+        }
+
+        public List<FileDataModel> CheckAllFiles() //Yani aslında burada .g.cs olanları da çekiyoruz ancak burada yalnızca .
         {
             List<FileDataModel> fileInfos = new List<FileDataModel>();
             foreach(string filePath in _dtoFilePaths) { 
-                string fileContent = File.ReadAllText(filePath);
-                fileInfos.Add(CheckFile(filePath, fileContent));
+                //string fileContent = File.ReadAllText(filePath);
+                FileDataModel checkedFile = CheckFile(filePath);
+                if(checkedFile != null)
+                {
+                    fileInfos.Add(checkedFile);
+                }
             }
+
             return fileInfos;
         }
 
-        public FileDataModel CheckFile(string filePath,string fileContent)
+        public FileDataModel CheckFile(string filePath) //Burada bana gelen filePathler içerisinde hem .g.cs olanlar hem de .cs olanlar var bu nedenle ikisini ayırt etmeliyim.
         {
-            FileDataModel currentFile = new FileDataModel(filePath);
-            
-            List<string> propertiesInsideFile = FindPropertiesInsideFile(fileContent);
-            List<string> usedPropertiesInsideCopy = FindUsedPropertiesInsideCopy(fileContent);
-            List<string> missedProperiesInsideCopy = CompareListsAndReturnDifferences(propertiesInsideFile, usedPropertiesInsideCopy);
-            
-            currentFile.PropertiesInsideFile = propertiesInsideFile; //Bu kısımda FieldNamesInsidePath kısmı değiştirilecek
-            currentFile.PropertiesUsedInsideCopy = usedPropertiesInsideCopy;
-            currentFile.Differencies = missedProperiesInsideCopy;
-           
+            FileDataModel currentFile; //yani burada direkt olarak bu filePath'i vermeden önce Copy var mı diye kontrol edecek. Copy var ise okey, Copy yok ise .g.cs olanı bulup onun filePAth'İni verecek
+
+            try //buraya try catch eklemek zorunda kaldım çünkü olur da bir .cs dosyası içerisinde hem Copy yok hem de bu dosyanın .g.cs dosyası da yok ise
+            {
+                string fileContent = File.ReadAllText(filePath);
+                string gfileContent;
+
+                List<string> propertiesInsideFile;
+                List<string> usedPropertiesInsideCopy;
+                List<string> missedPropertiesInsideCopy;
+
+                if (isNotGFile(filePath)) //sadece normal dosyaysa işlem yap .g dosyası olanlarla işlem ypmayız onları içerde konrtol ediyoruz
+                {
+                    if (isCurrentFileHasCopy(fileContent)) //Copy var ise .g.'yi control etmeye gerek yok, demek ki bu normal .cs dosyası ve .g. dosyası yok çünkü Copy'e sahip
+                    {
+                        currentFile = new FileDataModel(filePath);
+                        propertiesInsideFile = FindPropertiesInsideFile(fileContent);
+                        usedPropertiesInsideCopy = FindUsedPropertiesInsideCopy(fileContent);
+                        missedPropertiesInsideCopy = CompareListsAndReturnDifferences(propertiesInsideFile, usedPropertiesInsideCopy);
+                    }
+                    else //Demek ki bu dosyanın bir de .g.cs olan versiyonu var. .g.'deki propertyler ile diğer propertyleri bir listede topla, .g. içerisindeki Copy()deki propertyleri de bir listede topla
+                    {
+                        string gfilePath = filePath.Replace(".cs", ".g.cs"); //windows dosya sistemi büyük küçük harfe duyarsızmış yani A.txt ile a.txt aynı dosyayı işaret ediyor denedim
+
+                        currentFile = new FileDataModel(gfilePath); //ARTIK BURADA .g'nin pathini vermelisin!
+
+                        gfileContent = File.ReadAllText(gfilePath);
+
+                        propertiesInsideFile = FindPropertiesInsideFile(fileContent);
+                        List<string> propertiesInsideGFile = FindPropertiesInsideFile(gfileContent);
+                        propertiesInsideFile.AddRange(propertiesInsideGFile); //.cs ve .g.cs içerisindeki porpertyleri toplayıp propertiesInsideFile içine at
+                        usedPropertiesInsideCopy = FindUsedPropertiesInsideCopy(gfileContent);
+                        missedPropertiesInsideCopy = CompareListsAndReturnDifferences(propertiesInsideFile, usedPropertiesInsideCopy);
+                    }
+
+                    currentFile.PropertiesInsideFile = propertiesInsideFile; //Bu kısımda FieldNamesInsidePath kısmı değiştirilecek
+                    currentFile.PropertiesUsedInsideCopy = usedPropertiesInsideCopy;
+                    currentFile.Differencies = missedPropertiesInsideCopy;
+                }
+                else
+                {
+                    currentFile = null;
+                }
+            }
+            catch (FileNotFoundException e)
+            {
+                recordNewFileError(e);
+                return null;
+            }
+
             return currentFile;
+        }
+
+        private void recordNewFileError(FileNotFoundException error)
+        {
+            FileErrorList.Add(error.Message);
+        }
+
+        bool isCurrentFileHasCopy(string fileContent)
+        {
+            return Regex.IsMatch(fileContent, @"(C|c)opy\(\)"); //Metotlar büyük harfle yazılır ama belki yanlışlıkla küçük harf ile yazılmıştır.
+        }
+
+        bool isNotGFile(string filePath) //.g.cs dosyası değilse true döndür
+        {
+            string pattern = @".*(?=((?<!\.g)\.cs))\.cs"; //.g. veya .G. şeklinde de yazılmış olabilir ama windows dosya sistemi büyük küçük harfe duyarsız
+            return Regex.IsMatch(filePath, pattern);
         }
 
         //Bir DTO.cs içerisindeki private field'ları alır, bir List<string olarak geri döndürür.> 
@@ -68,7 +143,7 @@ namespace VakifIntershipTask
             }
             return usedPropertiesInsideCopy;
         }
-
+        
         //İki listedeki farkları karşılaştırır. Farklı olan elemanları bir liste halinde geri döndürür, eğer ikisi de eşitse boş bir liste döndürür
         private static List<string> CompareListsAndReturnDifferences(List<string> privateFields, List<string> usedInsideCopy)
         {
