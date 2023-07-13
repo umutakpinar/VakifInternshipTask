@@ -45,7 +45,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(23, 26);
+            this.label1.Location = new System.Drawing.Point(17, 21);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(240, 45);
             this.label1.TabIndex = 0;
@@ -57,7 +58,8 @@
             this.lblPathDirectory.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblPathDirectory.Font = new System.Drawing.Font("Segoe UI", 16.125F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPathDirectory.ForeColor = System.Drawing.Color.MediumBlue;
-            this.lblPathDirectory.Location = new System.Drawing.Point(347, 26);
+            this.lblPathDirectory.Location = new System.Drawing.Point(260, 21);
+            this.lblPathDirectory.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPathDirectory.Name = "lblPathDirectory";
             this.lblPathDirectory.Size = new System.Drawing.Size(537, 45);
             this.lblPathDirectory.TabIndex = 1;
@@ -68,7 +70,8 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(23, 114);
+            this.label2.Location = new System.Drawing.Point(17, 91);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(569, 45);
             this.label2.TabIndex = 2;
@@ -78,7 +81,8 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(23, 195);
+            this.label3.Location = new System.Drawing.Point(17, 156);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(485, 45);
             this.label3.TabIndex = 3;
@@ -88,7 +92,8 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(23, 282);
+            this.label4.Location = new System.Drawing.Point(17, 226);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(0, 38);
             this.label4.TabIndex = 4;
@@ -97,7 +102,8 @@
             // 
             this.lblNumberOfDTOFiles.AutoSize = true;
             this.lblNumberOfDTOFiles.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberOfDTOFiles.Location = new System.Drawing.Point(992, 121);
+            this.lblNumberOfDTOFiles.Location = new System.Drawing.Point(744, 97);
+            this.lblNumberOfDTOFiles.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNumberOfDTOFiles.Name = "lblNumberOfDTOFiles";
             this.lblNumberOfDTOFiles.Size = new System.Drawing.Size(38, 45);
             this.lblNumberOfDTOFiles.TabIndex = 5;
@@ -107,7 +113,8 @@
             // 
             this.lblNumberOfMissingContentFiles.AutoSize = true;
             this.lblNumberOfMissingContentFiles.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberOfMissingContentFiles.Location = new System.Drawing.Point(852, 199);
+            this.lblNumberOfMissingContentFiles.Location = new System.Drawing.Point(639, 159);
+            this.lblNumberOfMissingContentFiles.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNumberOfMissingContentFiles.Name = "lblNumberOfMissingContentFiles";
             this.lblNumberOfMissingContentFiles.Size = new System.Drawing.Size(38, 45);
             this.lblNumberOfMissingContentFiles.TabIndex = 6;
@@ -117,25 +124,28 @@
             // 
             this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.AllowUserToDeleteRows = false;
+            this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(32, 282);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridView.Location = new System.Drawing.Point(24, 226);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersWidth = 82;
             this.dataGridView.RowTemplate.Height = 33;
-            this.dataGridView.Size = new System.Drawing.Size(1509, 640);
+            this.dataGridView.Size = new System.Drawing.Size(1641, 793);
             this.dataGridView.TabIndex = 7;
             this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellClick);
             // 
             // btnRefresh
             // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.Location = new System.Drawing.Point(1229, 57);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRefresh.Location = new System.Drawing.Point(1431, 46);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(146, 171);
+            this.btnRefresh.Size = new System.Drawing.Size(110, 137);
             this.btnRefresh.TabIndex = 8;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -143,11 +153,11 @@
             // 
             // btnOutput
             // 
+            this.btnOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOutput.Location = new System.Drawing.Point(1395, 57);
-            this.btnOutput.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOutput.Location = new System.Drawing.Point(1555, 46);
             this.btnOutput.Name = "btnOutput";
-            this.btnOutput.Size = new System.Drawing.Size(146, 171);
+            this.btnOutput.Size = new System.Drawing.Size(110, 137);
             this.btnOutput.TabIndex = 9;
             this.btnOutput.Text = "Create Output File";
             this.btnOutput.UseVisualStyleBackColor = true;
@@ -155,9 +165,9 @@
             // 
             // DirectoryDetails
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1579, 965);
+            this.ClientSize = new System.Drawing.Size(1693, 1053);
             this.Controls.Add(this.btnOutput);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.dataGridView);
@@ -168,7 +178,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblPathDirectory);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DirectoryDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Directory Details";
