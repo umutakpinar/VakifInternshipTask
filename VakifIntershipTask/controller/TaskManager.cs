@@ -29,11 +29,11 @@ namespace VakifIntershipTask
         {
             FileDataModel currentFile = new FileDataModel(filePath);
             
-            List<string> privateFieldNames = FindPrivateFieldNames(fileContent);
+            List<string> usedProperties = GetUsedProperties(fileContent);
             List<string> usedFieldsInsideCopy = FindUsedFieldsInsideCopy(fileContent);
-            List<string> missedFieldsInsideCopy = CompareListsAndReturnDifferences(privateFieldNames, usedFieldsInsideCopy);
+            List<string> missedFieldsInsideCopy = CompareListsAndReturnDifferences(usedProperties, usedFieldsInsideCopy);
             
-            currentFile.FieldNamesInsidePath = privateFieldNames;
+            currentFile.FieldNamesInsidePath = usedProperties;
             currentFile.PropertiesUsedInsideCopy = usedFieldsInsideCopy;
             currentFile.Differencies = missedFieldsInsideCopy;
            
@@ -41,42 +41,18 @@ namespace VakifIntershipTask
         }
 
         //Bir DTO.cs içerisindeki private field'ları alır, ilk harflerini büyütür ve bir List<string olarak geri döndürür.>
-        private List<string> FindPrivateFieldNames(string fileContent)
+        private List<string> GetUsedProperties(string fileContent)
         {
-            string pattern = @"(?<=_)(?<fields>.*)(?=;)";
-            List<string> privateLabeledLines = FindPrivateLabeledLines(fileContent);
-            List<string> privateFields = new List<string>();
-            
-            foreach(string line in privateLabeledLines)
+            List<string> usedProperties = new List<string>();
+
+            string pattern = @"DataMember.*.*public .* (?<alanlar>\S+)";
+            MatchCollection matches = Regex.Matches(fileContent, pattern);
+            foreach (Match g in matches)
             {
-                Match match = Regex.Match(line, pattern);
-                if(match.Success) {
-                    char firstChar = char.ToUpper(match.Value[0]);
-                    string result = match.Value;
-                    result = firstChar + result.Substring(1);
-                    privateFields.Add(result);
-                }
+                usedProperties.Add(g.Groups["alanlar"].Value.Trim());
             }
 
-            return privateFields;
-        }
-        private List<string> FindPrivateLabeledLines(string fileContent)
-        {
-            string pattern = @"(?<=private)(?<privateRows>.*)";
-            List<string> privateLabeledLines = new List<string>();
-            using (StringReader reader = new StringReader(fileContent))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    if (Regex.IsMatch(line, pattern))
-                    {
-                        privateLabeledLines.Add(line);
-                    }
-                }
-            }
-
-            return privateLabeledLines;
+            return usedProperties;
         }
 
         //Bir DTO.cs içerisindeki Copy metodunda kullanılan fieldları alır bir List<string olarak geri döndürür.>
