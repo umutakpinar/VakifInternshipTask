@@ -36,7 +36,7 @@ namespace VakifIntershipTask
 
         private string convertListToString(List<String> fileDataList)
         {
-            return string.Join(", ", fileDataList);
+            return string.Join(",", fileDataList);
         }
 
         private string substractNameFromPath(string path)
