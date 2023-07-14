@@ -47,19 +47,6 @@ namespace VakifIntershipTask
             _form1Instance.Show(); //Bu form kapatıldığında seçim formunu aç
         }
 
-        
-        //hücreye tıklanınca hücre verisini göster
-        private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                DataGridViewCell selectedCell = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                string cellValue = selectedCell.Value?.ToString();
-
-                MessageBox.Show(cellValue);
-            }
-        
-        }
         //eğer path o an bir başkası tarafından değiştirillirse dataGridView'i yenilesin
         private void btnRefresh_Click(object sender, EventArgs e)
         {
@@ -78,6 +65,11 @@ namespace VakifIntershipTask
             {
                 MessageBox.Show("Everything looks fine for this directory. Nothing to dump.");
             }
+        }
+
+        private void btnFileErrors_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
