@@ -205,12 +205,14 @@ namespace VakifIntershipTask
             }
         }
     
-        public static void OutputWriter(string _selectedPath, DataGridView dataGridView, Label lblNumberOfMissingContentFiles)
+        public static void OutputWriter(
+            string _selectedPath, 
+            DataGridView dataGridView,
+            Label lblNumberOfMissingContentFiles)
         {
             List<string> headers = new List<string>();
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             int indexOfLastSlash = _selectedPath.LastIndexOf("/");
-            //string saveFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); ; //Belki burada varsayılan olarak desktop seçili hale getirilebilir.
             saveFileDialog.FileName = _selectedPath.Substring(indexOfLastSlash + 1) + "_analysis";
             saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)

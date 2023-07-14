@@ -10,15 +10,20 @@ namespace VakifIntershipTask
     {
         private string _fileName;
         private string _filePath;
-        private string _existingFields;
-        private string _usedProperties;
+        private string _existingProperties;
+        //private string _usedProperties;
         private string _missingProperties;
-        public AdaptedFileDataModel(string fileName, string filePath, string existingFields, string usedProperties, string missingProperties)
+        public AdaptedFileDataModel(
+            string fileName, 
+            string filePath, 
+            string existingProperties,
+            //string usedProperties, 
+            string missingProperties)
         {
             FileName = fileName;
             FilePath = filePath;
-            ExistingFields = existingFields;
-            UsedProperties = usedProperties;
+            ExistingProperties = existingProperties;
+            //UsedProperties = usedProperties;
             MissingProperties = missingProperties;
         }
 
@@ -43,17 +48,17 @@ namespace VakifIntershipTask
                 _filePath = value;
             }
         }
-        public string ExistingFields {
+        public string ExistingProperties {
             get
             {
-                return _existingFields;
+                return _existingProperties;
             }
             set
             {
-                _existingFields = value;
+                _existingProperties = value;
             }
         }
-        public string UsedProperties {
+        /*public string UsedProperties {
             get
             {
                 return _usedProperties;
@@ -62,7 +67,7 @@ namespace VakifIntershipTask
             {
                 _usedProperties = value;
             }
-        }
+        }*/
         public string MissingProperties {
             get
             {

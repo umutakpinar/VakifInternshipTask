@@ -25,7 +25,7 @@ namespace VakifIntershipTask
                         substractNameFromPath(_fileDataListToAdapt[i].FilePath),
                         _fileDataListToAdapt[i].FilePath,
                         convertListToString(_fileDataListToAdapt[i].PropertiesInsideFile),
-                        convertListToString(_fileDataListToAdapt[i].PropertiesUsedInsideCopy),
+                        //convertListToString(_fileDataListToAdapt[i].PropertiesUsedInsideCopy),
                         convertListToString(_fileDataListToAdapt[i].Differencies)
                     )
                 );
