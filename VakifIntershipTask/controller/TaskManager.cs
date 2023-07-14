@@ -11,8 +11,9 @@ namespace VakifIntershipTask
     internal class TaskManager
     {
         private string[] _dtoFilePaths;
-        private List<String> _fileErrorList; //Olmaz ama olur da eğer seçilen dosyada Copy methodu yoksa ve .g.cs dosyası yoksa
-        public List<string> FileErrorList
+        private static int _sumOfDTOFiles; //Artık .g.cs ve .cs dosyalarından ismi aynı olanları tek bir dosya gibi sayıyorum ve ekranda bunu göstereceğim. 
+        private static List<String> _fileErrorList; //Olmaz ama olur da eğer seçilen dosyada Copy methodu yoksa ve .g.cs dosyası yoksa
+        public static List<string> FileErrorList
         {
             get
             {
@@ -24,12 +25,25 @@ namespace VakifIntershipTask
             }
         }
 
+        public static int SumOfDTOFiles
+        {
+            get
+            {
+                return _sumOfDTOFiles;
+            }
+            set
+            {
+                _sumOfDTOFiles = value;
+            }
+        }
+
         public TaskManager(string[] dtoFilePaths) {
             _dtoFilePaths = dtoFilePaths;
             FileErrorList = new List<String>();
+            SumOfDTOFiles = 0;
         }
 
-        public List<FileDataModel> CheckAllFiles() //Yani aslında burada .g.cs olanları da çekiyoruz ancak burada yalnızca .
+        public List<FileDataModel> CheckAllFiles() //Yani aslında burada .g.cs olanları da çekiyoruz burada return edilen fileInfos listesi hem ismi DTo ile başlayıp .cs ile biten dosyaların sayısını veriyor yani.
         {
             List<FileDataModel> fileInfos = new List<FileDataModel>();
             foreach(string filePath in _dtoFilePaths) { 
@@ -48,7 +62,7 @@ namespace VakifIntershipTask
         {
             FileDataModel currentFile; //yani burada direkt olarak bu filePath'i vermeden önce Copy var mı diye kontrol edecek. Copy var ise okey, Copy yok ise .g.cs olanı bulup onun filePAth'İni verecek
 
-            try //buraya try catch eklemek zorunda kaldım çünkü olur da bir .cs dosyası içerisinde hem Copy yok hem de bu dosyanın .g.cs dosyası da yok ise
+            try //buraya try catch eklemek zorunda kaldım çünkü olur da bir .cs dosyası içerisinde hem Copy yok hem de bu dosyanın .g.cs dosyası da yok ise FileNotFoundException atıyor. Böyle bir durum olmaz ama olursa diye bunları FileErrorList içerisinde tutuyorum
             {
                 string fileContent = File.ReadAllText(filePath);
                 string gfileContent;
@@ -57,9 +71,10 @@ namespace VakifIntershipTask
                 List<string> usedPropertiesInsideCopy;
                 List<string> missedPropertiesInsideCopy;
 
-                if (isNotGFile(filePath)) //sadece normal dosyaysa işlem yap .g dosyası olanlarla işlem ypmayız onları içerde konrtol ediyoruz
+                if (isNotGFile(filePath)) //sadece normal dosyaysa işlem yap .g dosyası olanlarla işlem ypmayız onları bu karar bloğunun içerisinde kontrol edeceğim
                 {
-                    if (isCurrentFileHasCopy(fileContent)) //Copy var ise .g.'yi control etmeye gerek yok, demek ki bu normal .cs dosyası ve .g. dosyası yok çünkü Copy'e sahip
+                    SumOfDTOFiles++; //Eğer .g.cs dosyası değilse bunların sayısını öğrenmek için bir 
+                    if (isCurrentFileHasCopy(fileContent)) //Copy var ise .g.'yi control etmeye gerek yok, demek ki bu normal .cs dosyası ve .g. dosyası yok çünkü Copy'e sahip //Ancak olur da normal .cs dosyası olmasıına rağmen Copy'si yoksa ve .g.cs dosyası da yoksa hata catch'e yakalatıyorum
                     {
                         currentFile = new FileDataModel(filePath);
                         propertiesInsideFile = FindPropertiesInsideFile(fileContent);
@@ -145,13 +160,21 @@ namespace VakifIntershipTask
         }
         
         //İki listedeki farkları karşılaştırır. Farklı olan elemanları bir liste halinde geri döndürür, eğer ikisi de eşitse boş bir liste döndürür
-        private static List<string> CompareListsAndReturnDifferences(List<string> privateFields, List<string> usedInsideCopy)
+        private static List<string> CompareListsAndReturnDifferences(List<string> existingProperties, List<string> usedInsideCopy)
         {
-           List<string> missingFields = privateFields.Except(usedInsideCopy).ToList();
+           List<string> missingFields = existingProperties.Except(usedInsideCopy).ToList();
             return missingFields;
         }
 
-        public static void LoadData(Label lblPathDirectory, string _selectedPath, string[] _files, List<FileDataModel> _fileInfos, List<FileDataModel> _fileInfosHasTheMissingContent, Label lblNumberOfDTOFiles, Label lblNumberOfMissingContentFiles,DataGridView dataGridView)
+        public static void LoadData(
+            Label lblPathDirectory, 
+            string _selectedPath, string[] _files, 
+            List<FileDataModel> _fileInfos, 
+            List<FileDataModel> _fileInfosHasTheMissingContent, 
+            Label lblNumberOfDTOFiles, 
+            Label lblNumberOfMissingContentFiles,DataGridView dataGridView,
+            Label lblDToFilesExceptGFiles,
+            Button btnFileErrors)
         {
             try
             {
@@ -161,7 +184,9 @@ namespace VakifIntershipTask
                 TaskManager manager = new TaskManager(_files);
                 _fileInfos = manager.CheckAllFiles();
                 _fileInfosHasTheMissingContent = new List<FileDataModel>();
-                lblNumberOfDTOFiles.Text = _files.Length.ToString();
+                lblNumberOfDTOFiles.Text = _files.Length.ToString();  //Burada toplam .cs dosya sayısını göster hem DTO.cs hem de DTO.g.cs
+                lblDToFilesExceptGFiles.Text = SumOfDTOFiles.ToString(); //Artık burada tüm DTO.cs - .g.cs gösteriliyor yani ismi aynı olan .g.cs ve .cs dosyaları tek bir DTO olarak sayılacak
+                btnFileErrors.Text = "Errors\n" + FileErrorList.Count.ToString();
                 foreach (FileDataModel fileInfo in _fileInfos)
                 {
                     if (fileInfo.Differencies.Count > 0)
@@ -216,6 +241,18 @@ namespace VakifIntershipTask
                     }
                 }
                 MessageBox.Show("Output file created!");
+            }
+        }
+
+        public static void showFileErrors()
+        {
+            if(FileErrorList.Count > 0)
+            {
+                MessageBox.Show(string.Join("\n", FileErrorList));
+            }
+            else
+            {
+                MessageBox.Show("All .cs files or their .g.cs files are includes Copy() method.\nThis button made for to show: if someone forgets to write Copy method inside .cs file and if this .cs file does not have a .g.cs file, this file error will show here.");
             }
         }
     }

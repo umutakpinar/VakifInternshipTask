@@ -26,7 +26,17 @@ namespace VakifIntershipTask
 
         private void DirectoryDetails_Load(object sender, EventArgs e)
         {
-            TaskManager.LoadData(lblPathDirectory, _selectedPath, _files, _fileInfos, _fileInfosHasTheMissingContent, lblNumberOfDTOFiles, lblNumberOfMissingContentFiles, dataGridView);
+            TaskManager.LoadData(
+                lblPathDirectory, 
+                _selectedPath, _files,
+                _fileInfos,
+                _fileInfosHasTheMissingContent,
+                lblNumberOfDTOFiles,
+                lblNumberOfMissingContentFiles,
+                dataGridView,
+                lblDToFilesExceptGFiles,
+                btnFileErrors
+                );
         }
 
         private void lblPathDirectory_Click(object sender, EventArgs e)
@@ -46,15 +56,15 @@ namespace VakifIntershipTask
         {
             _form1Instance.Show(); //Bu form kapatıldığında seçim formunu aç
         }
-
+        
         //eğer path o an bir başkası tarafından değiştirillirse dataGridView'i yenilesin
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            TaskManager.LoadData(lblPathDirectory, _selectedPath, _files, _fileInfos, _fileInfosHasTheMissingContent, lblNumberOfDTOFiles, lblNumberOfMissingContentFiles, dataGridView);
+            TaskManager.LoadData(lblPathDirectory, _selectedPath, _files, _fileInfos, _fileInfosHasTheMissingContent, lblNumberOfDTOFiles, lblNumberOfMissingContentFiles, dataGridView, lblDToFilesExceptGFiles, btnFileErrors);
             dataGridView.Update();
             dataGridView.Refresh();
         }
-
+        
         private void btnOutput_Click(object sender, EventArgs e)
         {
             if (Convert.ToInt32(lblNumberOfMissingContentFiles.Text) != 0)
@@ -69,7 +79,7 @@ namespace VakifIntershipTask
 
         private void btnFileErrors_Click(object sender, EventArgs e)
         {
-
+            TaskManager.showFileErrors();
         }
     }
 }
