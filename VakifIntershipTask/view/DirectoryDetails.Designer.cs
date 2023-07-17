@@ -48,10 +48,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cascadia Mono", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 21);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(11, 14);
+            this.label1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(323, 43);
+            this.label1.Size = new System.Drawing.Size(221, 29);
             this.label1.TabIndex = 5;
             this.label1.Text = "Directory Path :";
             // 
@@ -61,10 +61,10 @@
             this.lblPathDirectory.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblPathDirectory.Font = new System.Drawing.Font("Segoe UI Variable Display", 16F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblPathDirectory.ForeColor = System.Drawing.Color.MediumBlue;
-            this.lblPathDirectory.Location = new System.Drawing.Point(344, 19);
-            this.lblPathDirectory.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPathDirectory.Location = new System.Drawing.Point(229, 12);
+            this.lblPathDirectory.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lblPathDirectory.Name = "lblPathDirectory";
-            this.lblPathDirectory.Size = new System.Drawing.Size(530, 43);
+            this.lblPathDirectory.Size = new System.Drawing.Size(363, 30);
             this.lblPathDirectory.TabIndex = 0;
             this.lblPathDirectory.Text = "C:/Users/example/example/example";
             this.lblPathDirectory.Click += new System.EventHandler(this.lblPathDirectory_Click);
@@ -73,10 +73,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Cascadia Mono", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(17, 71);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(11, 46);
+            this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(627, 43);
+            this.label2.Size = new System.Drawing.Size(429, 29);
             this.label2.TabIndex = 6;
             this.label2.Text = "All DTO Files (includes .g.cs): ";
             // 
@@ -84,10 +84,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Cascadia Mono", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(17, 162);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(11, 105);
+            this.label5.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(627, 43);
+            this.label5.Size = new System.Drawing.Size(429, 29);
             this.label5.TabIndex = 10;
             this.label5.Text = "DTO Files with missing Content :";
             // 
@@ -95,20 +95,20 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(17, 226);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(11, 147);
+            this.label4.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 38);
+            this.label4.Size = new System.Drawing.Size(0, 26);
             this.label4.TabIndex = 4;
             // 
             // lblNumberOfDTOFiles
             // 
             this.lblNumberOfDTOFiles.AutoSize = true;
             this.lblNumberOfDTOFiles.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberOfDTOFiles.Location = new System.Drawing.Point(640, 71);
-            this.lblNumberOfDTOFiles.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNumberOfDTOFiles.Location = new System.Drawing.Point(427, 46);
+            this.lblNumberOfDTOFiles.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lblNumberOfDTOFiles.Name = "lblNumberOfDTOFiles";
-            this.lblNumberOfDTOFiles.Size = new System.Drawing.Size(38, 45);
+            this.lblNumberOfDTOFiles.Size = new System.Drawing.Size(25, 30);
             this.lblNumberOfDTOFiles.TabIndex = 7;
             this.lblNumberOfDTOFiles.Text = "0";
             // 
@@ -116,10 +116,10 @@
             // 
             this.lblNumberOfMissingContentFiles.AutoSize = true;
             this.lblNumberOfMissingContentFiles.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberOfMissingContentFiles.Location = new System.Drawing.Point(648, 159);
-            this.lblNumberOfMissingContentFiles.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNumberOfMissingContentFiles.Location = new System.Drawing.Point(432, 103);
+            this.lblNumberOfMissingContentFiles.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lblNumberOfMissingContentFiles.Name = "lblNumberOfMissingContentFiles";
-            this.lblNumberOfMissingContentFiles.Size = new System.Drawing.Size(38, 45);
+            this.lblNumberOfMissingContentFiles.Size = new System.Drawing.Size(25, 30);
             this.lblNumberOfMissingContentFiles.TabIndex = 11;
             this.lblNumberOfMissingContentFiles.Text = "0";
             // 
@@ -133,23 +133,25 @@
             this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(24, 226);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView.Location = new System.Drawing.Point(16, 147);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersWidth = 82;
             this.dataGridView.RowTemplate.Height = 33;
-            this.dataGridView.Size = new System.Drawing.Size(1846, 764);
+            this.dataGridView.Size = new System.Drawing.Size(1231, 497);
             this.dataGridView.TabIndex = 4;
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRefresh.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnRefresh.Font = new System.Drawing.Font("Cascadia Mono", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.Location = new System.Drawing.Point(1633, 46);
+            this.btnRefresh.Location = new System.Drawing.Point(1089, 30);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(110, 137);
+            this.btnRefresh.Size = new System.Drawing.Size(73, 89);
             this.btnRefresh.TabIndex = 2;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = false;
@@ -157,12 +159,14 @@
             // 
             // btnOutput
             // 
-            this.btnOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOutput.BackColor = System.Drawing.Color.MediumAquamarine;
             this.btnOutput.Font = new System.Drawing.Font("Cascadia Mono", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOutput.Location = new System.Drawing.Point(1760, 46);
+            this.btnOutput.Location = new System.Drawing.Point(1173, 30);
+            this.btnOutput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnOutput.Name = "btnOutput";
-            this.btnOutput.Size = new System.Drawing.Size(110, 137);
+            this.btnOutput.Size = new System.Drawing.Size(73, 89);
             this.btnOutput.TabIndex = 3;
             this.btnOutput.Text = "Create Output File";
             this.btnOutput.UseVisualStyleBackColor = false;
@@ -170,12 +174,14 @@
             // 
             // btnFileErrors
             // 
-            this.btnFileErrors.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFileErrors.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFileErrors.BackColor = System.Drawing.Color.Salmon;
             this.btnFileErrors.Font = new System.Drawing.Font("Cascadia Mono", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFileErrors.Location = new System.Drawing.Point(1500, 46);
+            this.btnFileErrors.Location = new System.Drawing.Point(1000, 30);
+            this.btnFileErrors.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnFileErrors.Name = "btnFileErrors";
-            this.btnFileErrors.Size = new System.Drawing.Size(110, 137);
+            this.btnFileErrors.Size = new System.Drawing.Size(73, 89);
             this.btnFileErrors.TabIndex = 1;
             this.btnFileErrors.Text = "Errors";
             this.btnFileErrors.UseVisualStyleBackColor = false;
@@ -185,10 +191,10 @@
             // 
             this.lblDToFilesExceptGFiles.AutoSize = true;
             this.lblDToFilesExceptGFiles.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDToFilesExceptGFiles.Location = new System.Drawing.Point(533, 117);
-            this.lblDToFilesExceptGFiles.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDToFilesExceptGFiles.Location = new System.Drawing.Point(355, 76);
+            this.lblDToFilesExceptGFiles.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.lblDToFilesExceptGFiles.Name = "lblDToFilesExceptGFiles";
-            this.lblDToFilesExceptGFiles.Size = new System.Drawing.Size(38, 45);
+            this.lblDToFilesExceptGFiles.Size = new System.Drawing.Size(25, 30);
             this.lblDToFilesExceptGFiles.TabIndex = 9;
             this.lblDToFilesExceptGFiles.Text = "0";
             // 
@@ -196,18 +202,18 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Cascadia Mono", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(16, 116);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(11, 75);
+            this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(513, 43);
+            this.label3.Size = new System.Drawing.Size(351, 29);
             this.label3.TabIndex = 8;
             this.label3.Text = "DTO files (except .g.cs) :";
             // 
             // DirectoryDetails
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1898, 1024);
+            this.ClientSize = new System.Drawing.Size(1265, 666);
             this.Controls.Add(this.lblDToFilesExceptGFiles);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnFileErrors);
@@ -221,7 +227,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblPathDirectory);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.Name = "DirectoryDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Directory Details";

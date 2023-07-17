@@ -43,35 +43,34 @@
             this.dataGridViewErrors.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewErrors.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridViewErrors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewErrors.Location = new System.Drawing.Point(11, 125);
+            this.dataGridViewErrors.Location = new System.Drawing.Point(21, 111);
             this.dataGridViewErrors.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewErrors.Name = "dataGridViewErrors";
             this.dataGridViewErrors.ReadOnly = true;
             this.dataGridViewErrors.RowHeadersWidth = 82;
             this.dataGridViewErrors.RowTemplate.Height = 33;
-            this.dataGridViewErrors.Size = new System.Drawing.Size(1877, 783);
+            this.dataGridViewErrors.Size = new System.Drawing.Size(1457, 782);
             this.dataGridViewErrors.TabIndex = 5;
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cascadia Mono", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(20, 38);
+            this.label1.Location = new System.Drawing.Point(106, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1862, 43);
+            this.label1.Size = new System.Drawing.Size(1254, 86);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Probably there was supposed to be a Copy() method in these files, but these files" +
-    " were not found.";
+            this.label1.Text = "Probably there was supposed to be a Copy() method in these files,\r\n but these fil" +
+    "es were not found.";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ErrorList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1899, 919);
+            this.ClientSize = new System.Drawing.Size(1504, 918);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewErrors);
             this.Name = "ErrorList";
