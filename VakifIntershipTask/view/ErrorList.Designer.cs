@@ -77,6 +77,7 @@
             this.Name = "ErrorList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ErrorList";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ErrorList_FormClosing);
             this.Load += new System.EventHandler(this.ErrorList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewErrors)).EndInit();
             this.ResumeLayout(false);

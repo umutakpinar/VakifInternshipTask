@@ -79,7 +79,7 @@ namespace VakifIntershipTask
 
         private void btnFileErrors_Click(object sender, EventArgs e)
         {
-            TaskManager.showFileErrors();
+            TaskManager.showFileErrors(this);
         }
     }
 }

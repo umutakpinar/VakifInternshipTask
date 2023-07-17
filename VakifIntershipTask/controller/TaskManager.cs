@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Deployment.Application;
 using System.IO;
 using System.Linq;
@@ -47,8 +48,7 @@ namespace VakifIntershipTask
         public List<FileDataModel> CheckAllFiles() //Yani aslında burada .g.cs olanları da çekiyoruz burada return edilen fileInfos listesi hem ismi DTo ile başlayıp .cs ile biten dosyaların sayısını veriyor yani.
         {
             List<FileDataModel> fileInfos = new List<FileDataModel>();
-            foreach(string filePath in _dtoFilePaths) { 
-                //string fileContent = File.ReadAllText(filePath);
+            foreach(string filePath in _dtoFilePaths) {
                 FileDataModel checkedFile = CheckFile(filePath);
                 if(checkedFile != null)
                 {
@@ -117,7 +117,7 @@ namespace VakifIntershipTask
 
         private void recordNewFileError(FileNotFoundException error)
         {
-            FileErrorList.Add(error.Message.ToString());
+            FileErrorList.Add(error.Message);
         }
 
         bool isCurrentFileHasCopy(string fileContent)
@@ -219,7 +219,7 @@ namespace VakifIntershipTask
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string fileName = saveFileDialog.FileName;
-                //string filePath = Path.GetDirectoryName(fileName);
+                //string filePath = Path.GetDirectoryName(fileName); //Bu field gösterilmeyecek artak
                 using (StreamWriter writer = new StreamWriter(fileName))
                 {
                     foreach (DataGridViewColumn column in dataGridView.Columns)
@@ -247,16 +247,24 @@ namespace VakifIntershipTask
             }
         }
 
-        public static void showFileErrors()
+        public static void showFileErrors(DirectoryDetails instance)
         {
             if(FileErrorList.Count > 0)
             {
-               ErrorList errorListForm = new ErrorList(FileErrorList);
+                DataTable dataTable = new DataTable();
+                dataTable.Columns.Add("Error Message",typeof(string));
+
+                foreach(string err in FileErrorList)
+                {
+                    dataTable.Rows.Add(err);
+                }
+
+                ErrorList errorListForm = new ErrorList(dataTable, instance);
                 errorListForm.Show();
             }
             else
             {
-                MessageBox.Show("All .cs files or their .g.cs files are includes Copy() method.\nThis button made for to show: if someone forgets to write Copy method inside .cs file and if this .cs file does not have a .g.cs file, this file error will show here.");
+                MessageBox.Show("All .cs files or their .g.cs files are look like includes Copy() method.\nThis button made for to show: if someone forgets to write Copy method inside .cs file and if this .cs file does not have a .g.cs file, this file error will show here.");
             }
         }
     }
