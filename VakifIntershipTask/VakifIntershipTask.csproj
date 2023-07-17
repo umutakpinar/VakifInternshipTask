@@ -55,6 +55,12 @@
       <DependentUpon>DirectoryDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="model\FileDataModel.cs" />
+    <Compile Include="view\ErrorList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\ErrorList.Designer.cs">
+      <DependentUpon>ErrorList.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     <Compile Include="controller\TaskManager.cs" />
     <EmbeddedResource Include="view\DirectoryDetails.resx">
       <DependentUpon>DirectoryDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\ErrorList.resx">
+      <DependentUpon>ErrorList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

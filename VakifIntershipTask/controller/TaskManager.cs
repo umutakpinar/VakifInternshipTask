@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using VakifIntershipTask.view;
 
 namespace VakifIntershipTask
 {
@@ -116,7 +117,7 @@ namespace VakifIntershipTask
 
         private void recordNewFileError(FileNotFoundException error)
         {
-            FileErrorList.Add(error.Message);
+            FileErrorList.Add(error.Message.ToString());
         }
 
         bool isCurrentFileHasCopy(string fileContent)
@@ -250,7 +251,8 @@ namespace VakifIntershipTask
         {
             if(FileErrorList.Count > 0)
             {
-                MessageBox.Show(string.Join("\n", FileErrorList));
+               ErrorList errorListForm = new ErrorList(FileErrorList);
+                errorListForm.Show();
             }
             else
             {
